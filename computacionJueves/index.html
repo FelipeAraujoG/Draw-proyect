@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Draw Objects 3D</title>
+    <link rel="shortcut icon" href="./src/img/iconave.png" type="image/PNG">
+    <link rel="stylesheet" href="./src/css/myStyle.css">
+    <!-- Style bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <script src="./src/libs/build/three.js"></script>
+    <!--Controls-->
+    <script src="./src/libs/controls/OrbitControls.js"></script>
+    <script src="./src/js/main.js"></script>
+</head>
+
+<body onload="start()">
+    <canvas width="800" height="600" class="webgl"></canvas>
+    <nav class="navbar bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="./src/img/iconave.png" alt="Nave" width="30">
+            </a>
+
+            <ul class="nav justify-content-end">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">Create Objects</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#BoxModal">Box</a></li>
+                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#Cylindermodal">Cylinder</a></li>
+                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#Spheremodal">Sphere</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+    <!-- Modal -->
+    <div class="modal fade" id="BoxModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="BoxModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="BoxModalLabel">Create Cube</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input class="form-control mb-3" type="number" name="ancho" id="ancho" placeholder="x (Ancho)">
+                    <input class="form-control mb-3" type="number" name="alto" id="alto" placeholder="y (Alto)">
+                    <input class="form-control mb-3" type="number" name="profundidad" id="profundidad"
+                        placeholder="z (Profundidad)">
+                    <input class="form-control mb-3" type="color" name="color" id="color">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" onclick="getValues('Box')" class="btn btn-primary"
+                        data-bs-dismiss="modal">Create</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="Cylindermodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="CylindermodalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="CylindermodalLabel">Create Cylinder</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input class="form-control mb-3" type="number" name="radioTop" id="radioTop"
+                        placeholder="x (radioTop)">
+                    <input class="form-control mb-3" type="number" name="radioDaw" id="radioDaw"
+                        placeholder="y (radioDaw)">
+                    <input class="form-control mb-3" type="number" name="altura" id="altura" placeholder="z (altura)">
+                    <input class="form-control mb-3" type="number" name="segmentos" id="segmentos"
+                        placeholder="z (segmentos)">
+                    <input class="form-control mb-3" type="color" name="color" id="color">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" onclick="getValues('Cylinder')" class="btn btn-primary"
+                        data-bs-dismiss="modal">Create</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="Spheremodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="SpheremodalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="SpheremodalLabel">Create Sphere</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input class="form-control mb-3" type="number" name="Radio" id="Radio" placeholder="x (Radio)">
+                    <input class="form-control mb-3" type="number" name="segmento horizantal" id="segmento horizantal" placeholder="y (segmento horizantal)">
+                    <input class="form-control mb-3" type="number" name="segmento vertical" id="segmento vertical"
+                        placeholder="z (segmento vertical)">
+                    <input class="form-control mb-3" type="color" name="color" id="color">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" onclick="getValues('Sphere')" class="btn btn-primary"
+                        data-bs-dismiss="modal">Create</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- JS bootstrap-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
